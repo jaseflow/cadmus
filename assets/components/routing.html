@@ -28,6 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     page("/", function(data) {
         app.route = "home";
+        app.finished = false;
     });
 
     page(app.baseUrl, function() {
@@ -38,10 +39,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         app.route = "question";
         app.finished = false;
         app.params = data.params;
-        if(data.params.question = "0") {
-            console.log("got it");
-            app.showingScenario = true;
-        }
     });
 
     page("/thanks", function() {
