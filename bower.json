@@ -1,0 +1,25 @@
+{
+  "name": "brand-diff",
+  "version": "0.0.0",
+  "authors": [
+    "Jason Corbett <jcorbett@expedia.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "iron-elements": "PolymerElements/iron-elements#~1.0.7",
+    "polymer-elements": "~0.3.0",
+    "page": "~1.6.4",
+    "jquery": "~2.2.0"
+  },
+  "resolutions": {
+    "polymer": "^1.2.0"
+  }
+}

@@ -1,0 +1,80 @@
+<link rel="import" href="/assets/vendor/polymer/polymer.html">
+<link rel="import" href="/assets/vendor/iron-pages/iron-pages.html">
+
+<dom-module name="oned-questions">
+    <style>
+
+        .title {
+            color: #fff;
+        }
+
+        p {
+            margin-bottom: 1.5em;
+        }
+
+        .slide {
+            opacity: 0;
+            animation: fadeInRight 0.25s 1s ease forwards;
+        }
+
+    </style>
+    <template>
+        <div class="container">
+            <iron-pages selected="{{ active }}" id="pages">
+                <div class="slide">
+                    <h2>Scenario</h2>
+                    <p>Lorem elit nam sunt ad repellat? Amet dolorum illum similique perspiciatis maiores. Vel tempora quo aliquid temporibus porro repellat cum. Neque totam molestiae delectus quis doloremque, accusamus ipsum. Libero aliquam.</p>
+                    <p><a href="/questions/1" class="btn">Begin test</a></p>
+                </div>
+                <template is="dom-repeat" items="{{ questions }}">
+                    <div class="slide">
+                        <h3 class="title">Task {{ active }} of <span>{{ questions.length }}</span></h3>
+                        <div class="question">
+                            <p>{{ item.question }}</p>
+                        </div>
+                    </div>
+                </template>
+            </iron-pages>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "oned-questions",
+            properties: {
+                questions: {
+                    type: Array,
+                    value: []
+                },
+                active: {
+                    type: Number,
+                    notify: true,
+                    value: 0
+                },
+                currentQuestion: {
+                    type: Number,
+                    computed: "_currentQuestion(active)"
+                },
+                totalQuestions: {
+                    type: String,
+                    computed: "_totalQuestions(questions)",
+                    notify: true
+                }
+            },
+            _totalQuestions: function(questions) {
+                return questions.length;
+            },
+            _reload: function() {
+                this.$.questions.render();
+            },
+            _currentQuestion: function(question) {
+                return parseInt(question) + 1;
+            },
+            _calculateProgress: function(question, questions) {
+                return parseInt(question) / questions.length * 100;
+            },
+            attached: function() {
+                
+            }
+        });
+    </script>
+</dom-module>
