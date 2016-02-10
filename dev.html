@@ -3,28 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <title>CADMUS: An Expedia testing initiative</title>
-        <script src="/pages/ewe/CADMUS/assets/vendor/webcomponentsjs/webcomponents-lite.js"></script>
-        <script src="/pages/ewe/CADMUS/assets/vendor/page/page.js"></script>
-        <script src="/pages/ewe/CADMUS/assets/vendor/jquery/dist/jquery.js"></script>
+        <script src="/assets/vendor/webcomponentsjs/webcomponents-lite.js"></script>
+        <script src="/assets/vendor/page/page.js"></script>
+        <script src="/assets/vendor/jquery/dist/jquery.js"></script>
         <base href="/">
-        <link rel="shortcut icon" href="/pages/ewe/CADMUS/assets/images/favicon.png">
-        <link rel="import" href="/pages/ewe/CADMUS/assets/components/elements.html">
-        <link rel="stylesheet" href="/pages/ewe/CADMUS/assets/css/base.css">
+        <link rel="shortcut icon" href="/assets/images/favicon.png">
+        <link rel="import" href="/assets/components/elements.html">
+        <link rel="stylesheet" href="/assets/css/base.css">
     </head>
     <body unresolved>
         <template is="dom-bind" id="app">
             <div class="thanks fullscreen flex flex--guts" hidden$="{{ !finished }}">
                 <div style="max-width: 500px; text-align: center;">
-                    <img src="/pages/ewe/CADMUS/assets/images/logo.png" style="margin-bottom: 20px" alt="CADMUS">
+                    <img src="/assets/images/logo.png" style="margin-bottom: 20px" alt="CADMUS">
                     <h2 class="flat">Thank you for participating.</h2>
-                    <h3><a href="questions/0">Start again</a></h3>
+                    <h3><a href="/questions/0">Start again</a></h3>
                 </div>
             </div>
             <div class="has-sidebar" hidden$="{{ finished }}">
                 <div class="sidebar">
                     <div class="sidebar__head island">
-                        <a href="/pages/ewe/CADMUS/questions/0" class="logo">
-                            <img src="/pages/ewe/CADMUS/assets/images/logo.png" class="logo__img" alt="CADMUS">
+                        <a href="/questions/0" class="logo">
+                            <img src="/assets/images/logo.png" class="logo__img" alt="CADMUS">
                             <h4 class="flat logo__name">
                                 CADMUS
                                 <small class="logo__caption">an Expedia testing initiative</small>
@@ -48,6 +48,6 @@
                 </oned-screens>
             </div>
         </template>
-        <script src="/pages/ewe/CADMUS/assets/scripts/app.js"></script>
+        <script src="/assets/scripts/app.js"></script>
     </body>
 </html>
