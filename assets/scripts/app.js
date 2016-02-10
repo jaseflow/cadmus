@@ -5,7 +5,7 @@
     var progressCount = 0;
 
     // Sets app default base URL
-    app.baseUrl = '/';
+    app.baseUrl = window.location.pathname;
     if (window.location.port === '') {  // if production
         // Uncomment app.baseURL below and
         // set app.baseURL to '/your-pathname/' if running from folder in production
