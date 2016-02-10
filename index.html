@@ -16,9 +16,16 @@
         <template is="dom-bind" id="app">
             <div class="thanks fullscreen flex flex--guts" hidden$="{{ !finished }}">
                 <div style="max-width: 500px; text-align: center;">
-                    <img src="/pages/ewe/CADMUS/assets/images/logo.png" style="margin-bottom: 20px" alt="CADMUS">
-                    <h2 class="flat">Thank you for participating.</h2>
-                    <h3><a href="{{ baseUrl }}questions/0">Start again</a></h3>
+                    <div class="ending">
+                        <div class="ending__square"></div>
+                        <div class="ending__square"></div>
+                        <div class="ending__square"></div>
+                        <div class="ending__square"></div>
+                    </div>
+                    <div class="ending-title">
+                        <h2 class="flat">Thank you for participating.</h2>
+                        <h3><a href="{{ baseUrl }}questions/0">Start again</a></h3>
+                    </div>
                 </div>
             </div>
             <div class="has-sidebar" hidden$="{{ finished }}">
