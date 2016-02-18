@@ -17,11 +17,16 @@ Screenshots URL's should be added without the protocol. I recommend dumping scre
 
 To start developing, you need to:
 
-1. Clone the repository
-2. Checkout `gh-pages` branch (if not already on it)
-3. Start the server `python -m SimpleHTTPServer`
-4. Open `localhost:8000/dev.html` to load local assets
+```
+git clone git@ewegithub.sb.karmalab.net:EWE/Cadmus.git
+cd cadmus
+npm install
+cd src
+python -m SimpleHTTPServer
+```
+
+All development work is done in the `src` directory.
 
 ### Deployment
 
-Any code pushed to the `gh-pages` branch will be deployed and visible at the demo URL above. Sometimes it takes a few minutes for the page to show pushed changes.
+Run `gulp deploy` when you are ready to push your changes live.

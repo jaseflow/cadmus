@@ -5,8 +5,8 @@ var imagemin = require("gulp-imagemin");
 
 gulp.task("copy", function() {
     return gulp.src([ "./src/**/*", "!./src/assets/images/*" ])
-        .pipe(replace("assets", "pages/EWE/CADMUS/assets"))
-        .pipe(replace(/href="\/questions/g, 'href="/pages/EWE/CADMUS/questions'))
+        .pipe(replace("assets", "pages/EWE/Cadmus/assets"))
+        .pipe(replace(/href="\/questions/g, 'href="/pages/EWE/Cadmus/questions'))
         .pipe(gulp.dest("./dist"))
 });
 
