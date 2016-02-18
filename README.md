@@ -1,7 +1,7 @@
 ![](https://s3.amazonaws.com/uploads.hipchat.com/28219/1858130/GXjP1amIn52JTEg/logo.png)
 ## Cadmus
 
-> Cadmus is a user testing tool built for Unmonitored Remote Usability Testing (URIT).
+> Cadmus is a user testing tool built for Unmonitored Remote Usability Testing (URUT).
 
 ### Demo
 
