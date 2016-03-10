@@ -7,8 +7,7 @@
             position: relative;
             background: rgba(0,0,0,0.2);
             box-shadow: inset 0 10px 10px rgba(0,0,0,0.4);
-            min-height: 100vh;
-            padding: 20px;
+            min-height: calc(100vh - 50px);
         }
         .screen-wrapper:before {
             content: "Read the scenario and begin the test";
@@ -24,12 +23,8 @@
         }
         .screen-wrapper div {
             width: 100%;
-            max-width: 1100px;
             margin: 0 auto;
-        }
-
-        @media(min-width: 1400px) {
-            .screen-wrapper div { max-width: 1300px; }
+            text-align: center;
         }
 
         img {

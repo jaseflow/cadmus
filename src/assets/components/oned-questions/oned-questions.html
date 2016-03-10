@@ -14,7 +14,51 @@
 
         .slide {
             opacity: 0;
+            display: block;
+            background: #fefefe;
+            color: #1D2733;;
+            border-radius: 5px;
+            padding: 20px;
+            font-size: 13px;
             animation: fadeInRight 0.25s 1s ease forwards;
+            box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .slide__head {
+            background-color: #1D2733;
+            margin: -20px;
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            color: #FEC93C;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes showIcon {
+            0% {
+                opacity: 0;
+                transform: rotate(10deg) scale(2) translateX(100%);
+            }
+            100% {
+                opacity: 0.25;
+                transform: rotate(10deg) scale(2) translate(0);
+            }
+        }
+
+        .slide__head i {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 50px;
+            width: 50px;
+            background: url(../../images/logo.png);
+            background-repeat: no-repeat;
+            background-size: 50px;
+            display: block;
+            content: "";
+            opacity: 0;
+            animation: showIcon 0.2s 2s ease forwards;
         }
 
     </style>
@@ -22,14 +66,17 @@
         <div class="container">
             <iron-pages selected="{{ active }}" id="pages">
                 <div class="slide">
-                    <h2>Scenario</h2>
+                    <h2 class="slide__head">Scenario<i></i></h2>
                     <p>You are a family of four, with two children aged 8 and 9. For some strange reason you wish to take your family to Cancun.</p>
                     <p>You have arrived on this page by clicking a link after searching Google for "Hotels in Brisbane".</p>
-                    <p><a href="/questions/1" class="btn">Begin test</a></p>
+                    <a href="/questions/1" class="btn">Begin test</a>
                 </div>
                 <template is="dom-repeat" items="{{ questions }}">
                     <div class="slide">
-                        <h3 class="title">Task {{ active }} of <span>{{ questions.length }}</span></h3>
+                        <h3 class="title slide__head">
+                            Task {{ active }} of <span>{{ questions.length }}</span>
+                            <i></i>
+                        </h3>
                         <div class="question">
                             <p>{{ item.question }}</p>
                         </div>
