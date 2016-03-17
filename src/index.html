@@ -48,20 +48,20 @@
             </div>
             <div hidden$="{{ finished }}">
                 <div class="sidebar">
-                    <oned-tasks
+                    <cadmus-tasks
                         data-route="question"
                         id="questions"
                         base-url="{{ baseUrl }}"
                         tests="{{ tests }}"
                         active="{{ params.question }}">
-                    </oned-tasks>
+                    </cadmus-tasks>
                 </div>
-                <oned-screens
+                <cadmus-screens
                     data-route="screen"
                     id="screens"
                     tests="{{ tests }}"
                     active="{{ params.question }}">
-                </oned-screens>
+                </cadmus-screens>
             </div>
         </template>
         <script src="/assets/vendor/firebase/firebase.js"></script>
