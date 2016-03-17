@@ -1,7 +1,7 @@
 <link rel="import" href="../../vendor/polymer/polymer.html">
 <link rel="import" href="../../vendor/iron-pages/iron-pages.html">
 
-<dom-module name="oned-questions">
+<dom-module name="oned-tasks">
     <style>
 
         .title {
@@ -63,35 +63,34 @@
 
     </style>
     <template>
-        <div class="container">
-            <iron-pages selected="{{ active }}" id="pages">
+        <iron-pages selected="{{ active }}" id="pages">
+            <div class="slide">
+                <h2 class="slide__head">Scenario<i></i></h2>
+                <p>You are a family of four, with two children aged 8 and 9. For some strange reason you wish to take your family to Cancun.</p>
+                <p>You have arrived on this page by clicking a link after searching Google for "Hotels in Brisbane".</p>
+                <a href="/tasks/1" class="btn">Begin test</a>
+            </div>
+            <template is="dom-repeat" items="{{ _toArray(tests) }}" as="task">
                 <div class="slide">
-                    <h2 class="slide__head">Scenario<i></i></h2>
-                    <p>You are a family of four, with two children aged 8 and 9. For some strange reason you wish to take your family to Cancun.</p>
-                    <p>You have arrived on this page by clicking a link after searching Google for "Hotels in Brisbane".</p>
-                    <a href="/questions/1" class="btn">Begin test</a>
-                </div>
-                <template is="dom-repeat" items="{{ questions }}">
-                    <div class="slide">
-                        <h3 class="title slide__head">
-                            Task {{ active }} of <span>{{ questions.length }}</span>
-                            <i></i>
-                        </h3>
-                        <div class="question">
-                            <p>{{ item.question }}</p>
-                        </div>
+                    <h3 class="title slide__head">
+                        Task {{ active }} of <span>{{ tests.length }}</span>
+                        <i></i>
+                    </h3>
+                    <div class="task">
+                        <p>{{ task.value.message }}</p>
                     </div>
-                </template>
-            </iron-pages>
-        </div>
+                </div>
+            </template>
+        </iron-pages>
     </template>
     <script>
         Polymer({
-            is: "oned-questions",
+            is: "oned-tasks",
             properties: {
-                questions: {
+                tests: {
                     type: Array,
-                    value: []
+                    value: [],
+                    observer: "_testsChanged"
                 },
                 active: {
                     type: Number,
@@ -102,26 +101,31 @@
                     type: Number,
                     computed: "_currentQuestion(active)"
                 },
-                totalQuestions: {
+                totalTasks: {
                     type: String,
-                    computed: "_totalQuestions(questions)",
+                    computed: "_totalTasks(tests)",
                     notify: true
                 }
             },
-            _totalQuestions: function(questions) {
-                return questions.length;
+            _testsChanged: function(newVal) {
+                console.log("New Tasks are: ", newVal);
             },
-            _reload: function() {
-                this.$.questions.render();
+            _totalTasks: function(tasks) {
+                return tasks.length;
             },
-            _currentQuestion: function(question) {
-                return parseInt(question) + 1;
+            _currentQuestion: function(task) {
+                return parseInt(task) + 1;
             },
-            _calculateProgress: function(question, questions) {
-                return parseInt(question) / questions.length * 100;
+            _toArray: function(obj) {
+                return Object.keys(obj).map(function(key) {
+                    return {
+                        name: key,
+                        value: obj[key]
+                    };
+                });
             },
             attached: function() {
-                
+                console.log("Tasks are: ", this.tasks);
             }
         });
     </script>

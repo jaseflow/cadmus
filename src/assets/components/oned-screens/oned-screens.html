@@ -21,12 +21,6 @@
             text-align: center;
             transform: translate3d(-50%,-50%,0);
         }
-        .screen-wrapper div {
-            width: 100%;
-            margin: 0 auto;
-            text-align: center;
-        }
-
         img {
             max-width: 100%;
             opacity: 0;
@@ -44,14 +38,30 @@
             left: 400px;
             cursor: pointer;
         }
+        .component {
+            background: red;
+            position: absolute;
+            z-index: 5;
+            top: 20px;
+            left: 20px;
+        }
+        .screen {
+            position: relative;
+            width: 1440px;
+            margin: 0 auto;
+        }
     </style>
     <template>
         <div class="screen-wrapper">
             <iron-pages selected="{{ active }}" id="pages">
                 <div></div>
-                <template is="dom-repeat" items="{{ screens }}">
-                    <div>
-                        <img src$="https://{{ item.url }}" on-click="_handleClick">
+                <template is="dom-repeat" items="{{ _toArray(tests.value.tasks) }}" as="screen">
+                    <div class="screen">
+                        <img src$="{{ screen.value.screenshotUrl }}" on-click="_handleClick">
+                        <template is="dom-repeat" items="{{ _toArray(screen.value.components) }}" as="component">
+                            <div class="component" style$="width: {{ component.value.width }}px; height: {{ component.value.height }}px; top: {{ component.value.topPos }}px; left: {{ component.value.leftPos }}px">
+                            </div>
+                        </template>
                     </div>
                 </template>
             </iron-pages>
@@ -61,7 +71,7 @@
         Polymer({
             is: "oned-screens",
             properties: {
-                screens: {
+                tests: {
                     type: Array,
                     notify: true
                 },
@@ -79,6 +89,14 @@
                 } else {
                     page("/questions/" + nextQuestion);
                 }
+            },
+            _toArray: function(obj) {
+                return Object.keys(obj).map(function(key) {
+                    return {
+                        name: key,
+                        value: obj[key]
+                    };
+                });
             }
         });
     </script>

@@ -48,22 +48,21 @@
             </div>
             <div hidden$="{{ finished }}">
                 <div class="sidebar">
-                    <oned-questions
+                    <oned-tasks
                         data-route="question"
                         id="questions"
                         base-url="{{ baseUrl }}"
-                        active="{{ params.question }}"
-                        questions="{{ items }}">
-                    </oned-questions>
+                        active="{{ params.task }}">
+                    </oned-tasks>
                 </div>
                 <oned-screens
                     data-route="screen"
                     id="screens"
-                    active="{{ params.question }}"
-                    screens="{{ items }}">
+                    active="{{ params.task }}">
                 </oned-screens>
             </div>
         </template>
+        <script src="/assets/vendor/firebase/firebase.js"></script>
         <script src="/assets/scripts/app.js"></script>
         <script type="text/javascript">
             setTimeout(function(){var a=document.createElement("script");
