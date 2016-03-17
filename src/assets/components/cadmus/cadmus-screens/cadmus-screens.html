@@ -1,5 +1,5 @@
-<link rel="import" href="../../vendor/polymer/polymer.html">
-<link rel="import" href="../../vendor/iron-pages/iron-pages.html">
+<link rel="import" href="../../../vendor/polymer/polymer.html">
+<link rel="import" href="../cadmus-placeholders/cadmus-placeholders.html">
 
 <dom-module name="cadmus-screens">
     <style>
@@ -25,21 +25,10 @@
             max-width: 100%;
             opacity: 0;
             animation: zoomInUp 0.5s 0.25s ease forwards;
-            cursor: pointer;
             position: relative;
         }
-        .hotspot {
-            width: 200px;
-            height: 50px;
-            background: red;
-            border-radius: 4px;
-            position: absolute;
-            top: 500px;
-            left: 400px;
-            cursor: pointer;
-        }
         .component {
-            background: red;
+            background: rgba(0,0,0,0.1);
             position: absolute;
             z-index: 5;
             top: 20px;
@@ -58,10 +47,10 @@
                 <template is="dom-repeat" items="{{ _toArray(tests) }}" as="screen">
                     <div class="screen">
                         <img src$="{{ screen.value.screenshotUrl }}" on-click="_handleClick">
-                        <template is="dom-repeat" items="{{ _toArray(screen.value.components) }}" as="component">
-                            <div class="component" style$="width: {{ component.value.width }}px; height: {{ component.value.height }}px; top: {{ component.value.topPos }}px; left: {{ component.value.leftPos }}px">
-                            </div>
-                        </template>
+                        <cadmus-placeholders
+                            id="placeholders"
+                            components="{{ screen.value.components }}">
+                        </cadmus-placeholders>
                     </div>
                 </template>
             </iron-pages>
@@ -71,6 +60,7 @@
         Polymer({
             is: "cadmus-screens",
             properties: {
+                showComponents: true,
                 tests: {
                     type: Array,
                     notify: true

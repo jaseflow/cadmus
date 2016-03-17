@@ -1,0 +1,56 @@
+<link rel="import" href="../../../vendor/polymer/polymer.html">
+<dom-module name="cadmus-placeholders">
+    <style>
+        .placeholder {
+            background: rgba(0,0,0,0.1);
+            position: absolute;
+            z-index: 5;
+            top: 20px;
+            left: 20px;
+        }
+    </style>
+    <template>
+        <template if="{{ showPlaceholders }}" is="dom-repeat" items="{{ components }}" as="component">
+            <div class="placeholder" id$="placeholder{{ index }} " style$="width: {{ component.width }}px; height: {{ component.height }}px; top: {{ component.topPos }}px; left: {{ component.leftPos }}px">
+            </div>
+        </template>
+    </template>
+    <script>
+        Polymer({
+            is: "cadmus-placeholders",
+            properties: {
+                showPlaceholders: {
+                    type: Boolean,
+                    value: true
+                },
+                components: {
+                    type: Array,
+                    value: [],
+                    observer: "_handleComponentsChanged"
+                },
+                active: {
+                    type: String,
+                    notify: true,
+                    value: 0
+                }
+            },
+            _handleComponentsChanged: function(newVal) {
+                var self = this;
+                if(newVal.length) {
+                    newVal.forEach(function(component, index) {
+                        self._importComponent("placeholder" + index, component.name);
+                    });
+                }
+            },
+            _importComponent: function(container, name) {
+                var self = this;
+                this.importHref("/assets/components/reviews/review-one", function(event) {
+                    var component = document.createElement("review-one");
+                    Polymer.dom(this.root).querySelector("#" + container).appendChild(component);
+                }, function(event) {
+                    console.log(event);
+                });
+            }
+        });
+    </script>
+</dom-module>
