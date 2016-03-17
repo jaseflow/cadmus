@@ -52,13 +52,15 @@
                         data-route="question"
                         id="questions"
                         base-url="{{ baseUrl }}"
-                        active="{{ params.task }}">
+                        tests="{{ tests }}"
+                        active="{{ params.question }}">
                     </oned-tasks>
                 </div>
                 <oned-screens
                     data-route="screen"
                     id="screens"
-                    active="{{ params.task }}">
+                    tests="{{ tests }}"
+                    active="{{ params.question }}">
                 </oned-screens>
             </div>
         </template>

@@ -55,7 +55,7 @@
         <div class="screen-wrapper">
             <iron-pages selected="{{ active }}" id="pages">
                 <div></div>
-                <template is="dom-repeat" items="{{ _toArray(tests.value.tasks) }}" as="screen">
+                <template is="dom-repeat" items="{{ _toArray(tests) }}" as="screen">
                     <div class="screen">
                         <img src$="{{ screen.value.screenshotUrl }}" on-click="_handleClick">
                         <template is="dom-repeat" items="{{ _toArray(screen.value.components) }}" as="component">
