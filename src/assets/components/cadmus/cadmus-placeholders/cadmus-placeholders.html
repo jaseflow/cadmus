@@ -10,10 +10,7 @@
         }
     </style>
     <template>
-        <template if="{{ showPlaceholders }}" is="dom-repeat" items="{{ components }}" as="component">
-            <div class="placeholder" id$="placeholder{{ index }} " style$="width: {{ component.width }}px; height: {{ component.height }}px; top: {{ component.topPos }}px; left: {{ component.leftPos }}px">
-            </div>
-        </template>
+        <div id="placeholders"></div>
     </template>
     <script>
         Polymer({
@@ -26,6 +23,7 @@
                 components: {
                     type: Array,
                     value: [],
+                    notify: true,
                     observer: "_handleComponentsChanged"
                 },
                 active: {
@@ -36,17 +34,24 @@
             },
             _handleComponentsChanged: function(newVal) {
                 var self = this;
-                if(newVal.length) {
-                    newVal.forEach(function(component, index) {
-                        self._importComponent("placeholder" + index, component.name);
-                    });
-                }
+                newVal.forEach(function(component, index) {
+                    self._importComponent("placeholder" + index, component)
+                });
             },
-            _importComponent: function(container, name) {
+            _importComponent: function(container, component) {
                 var self = this;
-                this.importHref("/assets/components/reviews/review-one", function(event) {
-                    var component = document.createElement("review-one");
-                    Polymer.dom(this.root).querySelector("#" + container).appendChild(component);
+                var containerEl = document.createElement("div");
+                containerEl.id = container;
+                containerEl.className = "placeholder";
+                containerEl.setAttribute("style",
+                    "width:" + component.width + "px; height:" + component.height+ "px; left:" + component.leftPos + "px; top:" + component.topPos + "px");
+                Polymer.dom(this.$$("#placeholders")).appendChild(containerEl);
+                // Polymer.dom(this.root).querySelector("#" + container).appendChild(component);
+                this.importHref("/assets/components/" + component.path, function(event) {
+                    var regex = new RegExp(".*\/(.*)", "g");
+                    var componentName = regex.exec(component.path);
+                    var componentEl = document.createElement(componentName[1]);
+                    Polymer.dom(this.$$("#" + container)).appendChild(componentEl);
                 }, function(event) {
                     console.log(event);
                 });

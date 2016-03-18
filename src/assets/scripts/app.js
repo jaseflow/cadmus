@@ -4,6 +4,15 @@
     var app = document.querySelector("#app");
     var progressCount = 0;
 
+    function importComponent(container, name) {
+        app.importHref("/assets/components/reviews/review-one", function(event) {
+            var component = document.createElement("review-one");
+            Polymer.dom(this.root).querySelector("#" + container).appendChild(component);
+        }, function(event) {
+            console.log(event);
+        });
+    }
+
     // Sets app default base URL
     app.baseUrl = window.location.pathname;
     if (window.location.port === '') {  // if production
@@ -22,7 +31,6 @@
     app.addEventListener('dom-change', function() {
 
         var ref = new Firebase("https://projectcadmus.firebaseio.com/");
-
         // Attach an asynchronous callback to read the data at our posts reference
         ref.on("value", function(snapshot) {
             app.tests = snapshot.val().tests;
